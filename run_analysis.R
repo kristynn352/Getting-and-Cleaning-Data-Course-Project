@@ -50,3 +50,9 @@ fitdata$activity <- factor(fitdata$activity, levels=activities[,1], labels=as.ch
 ################## From the data set created, creates a second, independent tidy data set with the average of each variable for each activity and each subject.###
 
 aggfitdata <- ddply(fitdata[,3:81], .(fitdata$Subject, fitdata$activity), numcolwise(mean))
+names(aggfitdata)[names(aggfitdata)=="fitdata$Subject"] <- "Subject"
+names(aggfitdata)[names(aggfitdata)=="fitdata$activity"] <- "activity"
+
+####create table from second tidy dataset
+
+write.table(aggfitdata,"aggfitdata.txt")
